@@ -1,0 +1,169 @@
+package aryapbobangundatar;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Persegi persegi = new Persegi();
+        persegi.setSisi(5);
+
+        Lingkaran lingkaran = new Lingkaran();
+        lingkaran.setJari(7);
+
+        PersegiPanjang pp = new PersegiPanjang();
+        pp.setPanjang(10);
+        pp.setLebar(5);
+
+        Segitiga segitiga = new Segitiga();
+        segitiga.setAlas(6);
+        segitiga.setTinggi(4);
+        segitiga.setSisiMiring1(5);
+        segitiga.setSisiMiring2(5);
+
+        System.out.println("=== BANGUN DATAR ===");
+
+        System.out.println("\nPERSEGI");
+        System.out.println("Luas: " + persegi.getLuas());
+        System.out.println("Keliling: " + persegi.getKeliling());
+
+        System.out.println("\nLINGKARAN");
+        System.out.println("Luas: " + lingkaran.getLuas());
+        System.out.println("Keliling: " + lingkaran.getKeliling());
+
+        System.out.println("\nPERSEGI PANJANG");
+        System.out.println("Luas: " + pp.getLuas());
+        System.out.println("Keliling: " + pp.getKeliling());
+
+        System.out.println("\nSEGITIGA");
+        System.out.println("Luas: " + segitiga.getLuas());
+        System.out.println("Keliling: " + segitiga.getKeliling());
+    }
+}
+
+abstract class BangunDatar {
+    protected abstract float luas();
+    protected abstract float keliling();
+
+    public float getLuas() {
+        return luas();
+    }
+
+    public float getKeliling() {
+        return keliling();
+    }
+}
+
+class Persegi extends BangunDatar {
+    private float sisi;
+
+    public void setSisi(float sisi) {
+        this.sisi = sisi;
+    }
+
+    public float getSisi() {
+        return sisi;
+    }
+
+    @Override
+    protected float luas() {
+        return sisi * sisi;
+    }
+
+    @Override
+    protected float keliling() {
+        return 4 * sisi;
+    }
+}
+
+class Lingkaran extends BangunDatar {
+    private float jari;
+
+    public void setJari(float jari) {
+        this.jari = jari;
+    }
+
+    public float getJari() {
+        return jari;
+    }
+
+    @Override
+    protected float luas() {
+        return (float) (Math.PI * jari * jari);
+    }
+
+    @Override
+    protected float keliling() {
+        return (float) (2 * Math.PI * jari);
+    }
+}
+
+class PersegiPanjang extends BangunDatar {
+    private float panjang;
+    private float lebar;
+
+    public void setPanjang(float panjang) {
+        this.panjang = panjang;
+    }
+
+    public void setLebar(float lebar) {
+        this.lebar = lebar;
+    }
+
+    public float getPanjang() {
+        return panjang;
+    }
+
+    public float getLebar() {
+        return lebar;
+    }
+
+    @Override
+    protected float luas() {
+        return panjang * lebar;
+    }
+
+    @Override
+    protected float keliling() {
+        return 2 * (panjang + lebar);
+    }
+}
+
+class Segitiga extends BangunDatar {
+    private float alas;
+    private float tinggi;
+    private float sisiMiring1;
+    private float sisiMiring2;
+
+    public void setAlas(float alas) {
+        this.alas = alas;
+    }
+
+    public void setTinggi(float tinggi) {
+        this.tinggi = tinggi;
+    }
+
+    public void setSisiMiring1(float sisi) {
+        this.sisiMiring1 = sisi;
+    }
+
+    public void setSisiMiring2(float sisi) {
+        this.sisiMiring2 = sisi;
+    }
+
+    public float getAlas() {
+        return alas;
+    }
+
+    public float getTinggi() {
+        return tinggi;
+    }
+
+    @Override
+    protected float luas() {
+        return 0.5f * alas * tinggi;
+    }
+
+    @Override
+    protected float keliling() {
+        return alas + sisiMiring1 + sisiMiring2;
+    }
+}
